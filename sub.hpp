@@ -12,6 +12,10 @@ class Sub: public Base{
 			left = leftNode;
 			right = rightNode;
 		}
+		~Sub(){
+			delete left;
+			delete right;
+		}
 		double evaluate(){
 			return left->evaluate() - right->evaluate();
 		}

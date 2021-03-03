@@ -13,6 +13,10 @@ class Pow : public Base{
 			left = leftNode;
 			right = rightNode;
 		}
+		~Pow(){
+			delete left;
+			delete right;
+		}
 		double evaluate(){
 			return pow(left->evaluate(), right->evaluate());
 		}

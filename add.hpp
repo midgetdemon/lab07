@@ -12,6 +12,10 @@ class Add: public Base{
 			left = leftNode;
 			right = rightNode;
 		}
+		~Add(){
+			delete left;
+			delete right;
+		}
 		double evaluate(){
 			return left->evaluate() + right->evaluate();
 		}
