@@ -47,6 +47,15 @@ class Factory{
           string strin = static_cast<string>(input[i]);
           if(strin == "+" || strin == "/" || strin == "*" || strin == "**" || strin == "-"){
             if(ops.size() > 0){
+	      if(nodes.size() < 2){
+	        if(nodes.size() > 0){
+                  for(int i = 0; i < nodes.size(); ++ i){
+                    delete nodes.top();
+                    nodes.pop();
+                  }
+                }
+                return nullptr;
+              }
               string parent = ops.top();
               ops.pop();
               Base* child1 = nodes.top();
@@ -82,6 +91,15 @@ class Factory{
           }
         }
       }
+      if(ops.size() != 1 || nodes.size() != 2){
+        if(nodes.size() > 0){
+          for(int i = 0; i < nodes.size(); ++ i){
+            delete nodes.top();
+            nodes.pop();
+          }
+        }
+        return nullptr;
+      }
       string parent = ops.top();
       ops.pop();
       Base* child1 = nodes.top();
@@ -102,15 +120,6 @@ class Factory{
       }
       else if(parent == "-"){
         nodes.push(new Sub(child2, child1));
-      }
-      if(!ops.empty() && nodes.size() == 1){
-        if(nodes.size() > 0){
-	  for(int i = 0; i < nodes.size(); ++ i){
-	    delete nodes.top();
-	    nodes.pop();
-	  }
-	}
-	return nullptr;
       }
       Base* node = nodes.top();
       nodes.pop();
