@@ -14,6 +14,7 @@
 #include "mult.hpp"
 #include "pow.hpp"
 #include "sub.hpp"
+#include "rand.hpp"
 
 using namespace std;
 
