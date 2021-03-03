@@ -18,7 +18,7 @@
 using namespace std;
 
 class Factory{
-	public:
+    public:
     Factory(){ }
     Base* parse(char** input, int length){
       stack<string> ops;
@@ -30,7 +30,13 @@ class Factory{
         if(isdigit(input[i][0])){
           for(int j = 1; j < strlen(input[i]); ++j){
             if(!isdigit(input[i][j])){
-              return nullptr;
+              if(nodes.size() > 0){
+		for(int i = 0; i < nodes.size(); ++i){
+		  delete nodes.top();
+		  nodes.pop();
+		}
+	      }
+	      return nullptr;
             }
           }
           int operation = atoi(input[i]);
@@ -66,6 +72,12 @@ class Factory{
             ops.push(strin);
           }
           else{
+	    if(nodes.size() > 0){
+	      for(int i = 0; i < nodes.size(); ++i){
+		delete nodes.top();
+		nodes.pop();
+	      }
+	    }
             return nullptr;
           }
         }
@@ -92,7 +104,13 @@ class Factory{
         nodes.push(new Sub(child2, child1));
       }
       if(!ops.empty() && nodes.size() == 1){
-        return nullptr;
+        if(nodes.size() > 0){
+	  for(int i = 0; i < nodes.size(); ++ i){
+	    delete nodes.top();
+	    nodes.pop();
+	  }
+	}
+	return nullptr;
       }
       Base* node = nodes.top();
       nodes.pop();

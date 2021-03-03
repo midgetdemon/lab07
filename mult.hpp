@@ -12,6 +12,10 @@ class Mult: public Base{
 			left = leftNode;
 			right = rightNode;
 		}
+		~Mult(){
+			delete left;
+			delete right;
+		}
 		double evaluate(){
 			return left->evaluate()*right->evaluate();
 		}
