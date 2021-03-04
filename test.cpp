@@ -95,24 +95,32 @@ TEST(BasicTests, SimplePow){
         EXPECT_EQ(16, capture->evaluate());
         EXPECT_EQ("(2.000000**4.000000)", capture->stringify());
 }
-
 /**
+
 TEST(BasicTests, SimpleRandAdd){
-        char* test_val[4];
+        char* test_val[2];
         test_val[0] = strdup("./calculator");
 	Rand* rand = new Rand(); 
 	std::string str = rand->stringify();
 	const char * c = str.c_str(); 
         test_val[1] = strdup(c); 
-        test_val[2] = strdup("+");
-        test_val[3] = strdup("1");
+       // test_val[2] = strdup("+");
+        //test_val[3] = strdup("1");
         Factory test;
-        Base* capture = test.parse(test_val, 4);
-        EXPECT_EQ(rand+1, capture->evaluate());
-        EXPECT_EQ(capture->stringify(), std::to_string(capture->evaluate()));
+        Base* capture = test.parse(test_val, 2);
+        EXPECT_EQ(nullptr, capture->evaluate());
+        //EXPECT_EQ(capture->stringify(), std::to_string(capture->evaluate()));
 }
 **/
+TEST(RandTest, EvaluateRand){
+	Rand* test = new Rand();
+	EXPECT_EQ(test->evaluate(), test->evaluate());
+}
 
+TEST(RandTest, StringRand){
+	Rand* test = new Rand();
+	EXPECT_EQ(test->stringify(), std::to_string(test->evaluate()));
+}
 
 TEST(UserTests, Complex1){
         char* test_val[6];
