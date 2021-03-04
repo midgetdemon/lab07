@@ -24,7 +24,7 @@ class Factory{
     Base* parse(char** input, int length){
       stack<string> ops;
       stack <Base*> nodes;
-      if(length < 2){
+      if(length < 4){
         return nullptr;
       }
       for(int i = 1; i<length; ++i){
@@ -32,7 +32,7 @@ class Factory{
           for(int j = 1; j < strlen(input[i]); ++j){
             if(!isdigit(input[i][j])){
               if(nodes.size() > 0){
-		for(int i = 0; i < nodes.size(); ++i){
+		while(!nodes.empty()){
 		  delete nodes.top();
 		  nodes.pop();
 		}
@@ -50,7 +50,7 @@ class Factory{
             if(ops.size() > 0){
 	      if(nodes.size() < 2){
 	        if(nodes.size() > 0){
-                  for(int i = 0; i < nodes.size(); ++ i){
+                  while(!nodes.empty()){
                     delete nodes.top();
                     nodes.pop();
                   }
@@ -83,7 +83,7 @@ class Factory{
           }
           else{
 	    if(nodes.size() > 0){
-	      for(int i = 0; i < nodes.size(); ++i){
+	      while(!nodes.empty()){
 		delete nodes.top();
 		nodes.pop();
 	      }
@@ -94,7 +94,7 @@ class Factory{
       }
       if(ops.size() != 1 || nodes.size() != 2){
         if(nodes.size() > 0){
-          for(int i = 0; i < nodes.size(); ++ i){
+          while(!nodes.empty()){
             delete nodes.top();
             nodes.pop();
           }
