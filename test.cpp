@@ -2,9 +2,7 @@
 #include "factory.hpp"
 
 TEST(NullTests, OneInput){
-	char* test_val[2];
-	test_val[0] = strdup("./calculator");
-	test_val[1] = strdup("1");
+	char* test_val[] = {"./calculator", "1"};
 	Factory test;
 	EXPECT_EQ(nullptr, test.parse(test_val, 2));
 }
@@ -112,7 +110,6 @@ TEST(BasicTests, SimpleRandAdd){
         EXPECT_EQ(capture->stringify(), std::to_string(capture->evaluate()));
 }
 **/
-
 
 TEST(UserTests, Complex1){
         char* test_val[6];
