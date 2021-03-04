@@ -88,12 +88,12 @@ TEST(BasicTests, SimplePow){
         char* test_val[4];
         test_val[0] = strdup("./calculator");
         test_val[1] = strdup("2");
-        test_val[2] = strdup("^");
+        test_val[2] = strdup("**");
         test_val[3] = strdup("4");
         Factory test;
         Base* capture = test.parse(test_val, 4);
         EXPECT_EQ(16, capture->evaluate());
-        EXPECT_EQ("(2.000000^4.000000)", capture->stringify());
+        EXPECT_EQ("(2.000000**4.000000)", capture->stringify());
 }
 
 /**
@@ -113,6 +113,7 @@ TEST(BasicTests, SimpleRandAdd){
 }
 **/
 
+
 TEST(UserTests, Complex1){
         char* test_val[6];
         test_val[0] = strdup("./calculator");
@@ -127,7 +128,8 @@ TEST(UserTests, Complex1){
         EXPECT_EQ(18, capture->evaluate());
         EXPECT_EQ("((2.000000+4.000000)*3.000000)", capture->stringify());
 }
-/**
+
+
 TEST(UserTests, Complex2){
         char* test_val[6];
         test_val[0] = strdup("./calculator");
@@ -141,7 +143,6 @@ TEST(UserTests, Complex2){
         EXPECT_EQ(6, capture->evaluate());
         EXPECT_EQ("((4.000000*3.000000)/2.000000)", capture->stringify());
 }
-**/
 
 int main (int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
